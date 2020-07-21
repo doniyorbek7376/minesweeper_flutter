@@ -4,3 +4,4 @@ class Mine {
   bool isOpen = false, isFlagged = false;
   Mine({this.mines});
 }
+
