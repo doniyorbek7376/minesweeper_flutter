@@ -7,7 +7,9 @@ class MineField {
   var _listInt = List<List<int>>();
   var _listMine = List<List<Mine>>();
 
-  MineField({this.row, this.column, this.mines});
+  MineField({this.row, this.column, this.mines}) {
+    generate();
+  }
 
   Mine getMine(int r, int c) {
     if (r < row && c < column) return _listMine[r][c];
@@ -29,7 +31,6 @@ class MineField {
       }
     }
     for (int i = 0; i < row; i++) {
-      
       for (int j = 0; j < column; j++) {
         if (_listInt[i][j] != -1) {
           _listInt[i][j] = _numberOfMines(i, j);

@@ -22,16 +22,17 @@ enum MineState {
 enum MineEvent {
   Open,
   Flag,
+  Close,
 }
 
-class MineViewmodel {
-  final Mine mine;
-  final _outputController = StreamController<MineState>();
+class MineViewModel {
+  Mine mine;
+  final _outputController = StreamController<MineState>.broadcast();
   final _inputController = StreamController<MineEvent>();
   Stream<MineState> get stream => _outputController.stream;
   Sink<MineEvent> get sink => _inputController.sink;
 
-  MineViewmodel({@required this.mine}) {
+  MineViewModel({@required this.mine}) {
     _inputController.stream.listen(onEvent);
   }
 
@@ -41,9 +42,15 @@ class MineViewmodel {
   }
 
   void onEvent(MineEvent event) {
-    if(mine.isOpen) return;
+    
     switch (event) {
+      case MineEvent.Close:
+        mine.isOpen = false;
+        mine.isFlagged = false;
+        _sendState(MineState.Unflagged);    
+        break;
       case MineEvent.Open:
+      if(mine.isOpen) return;
         mine.isOpen = true;
         if (mine.mines == -1) {
           _sendState(MineState.Mine);
@@ -52,7 +59,7 @@ class MineViewmodel {
         }
         break;
       case MineEvent.Flag:
-        
+        if(mine.isOpen) return;
         mine.isFlagged = !mine.isFlagged;
         _sendState(mine.isFlagged ? MineState.Flagged : MineState.Unflagged);
         break;
