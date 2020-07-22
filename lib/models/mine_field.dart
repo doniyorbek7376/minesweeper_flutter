@@ -3,11 +3,11 @@ import 'dart:math';
 import 'package:minesweeper/models/mine.dart';
 
 class MineField {
-  final int row, column, mines;
+  int row=0, column=0, mines=0;
   var _listInt = List<List<int>>();
   var _listMine = List<List<Mine>>();
 
-  MineField({this.row, this.column, this.mines}) {
+  MineField({this.row=0, this.column=0, this.mines=0}) {
     generate();
   }
 

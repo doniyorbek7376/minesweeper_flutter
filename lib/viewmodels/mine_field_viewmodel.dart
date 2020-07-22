@@ -15,6 +15,7 @@ enum ClickState {
 }
 
 class MineFieldViewModel {
+  bool isGameOver = false;
   ClickState state = ClickState.Open;
   final MineField field;
   var _viewmodels = List<List<MineViewModel>>();
@@ -63,7 +64,8 @@ class MineFieldViewModel {
     _mineOpenerController.close();
   }
 
-  void gameOver() {
+  void newGame() {
+    isGameOver = false;
     field.generate();
     for (int i = 0; i < field.row; i++) {
         for (int j = 0; j < field.column; j++) {
@@ -71,5 +73,10 @@ class MineFieldViewModel {
         }
     }
     _viewmodels.forEach((row) => row.forEach((model) => model.sink.add(MineEvent.Close)));
+  }
+
+  void gameOver() {
+    isGameOver = true;
+    _viewmodels.forEach((row) => row.forEach((model) => model.sink.add(MineEvent.Open)));
   }
 }

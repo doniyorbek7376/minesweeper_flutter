@@ -16,11 +16,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MineFieldWidget(
-        field: MineField(
-          row: 10,
-          column: 10,
-          mines: 20,
-        ),
+        field: MineField(),
       ),
     );
   }

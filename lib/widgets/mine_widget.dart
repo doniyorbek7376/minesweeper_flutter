@@ -24,21 +24,21 @@ class MineWidget extends StatelessWidget {
       stream: model.stream,
       initialData: MineState.Unflagged,
       builder: (_, snapshot) {
-        if (snapshot.data == MineState.Mine) gameOver();
+        if (snapshot.data == MineState.Mine && !fieldModel.isGameOver) gameOver();
         print(snapshot);
         if (snapshot.data == MineState.Zero)
           fieldModel.mineSink.add(Pos(row, column));
         return Container(
           decoration: BoxDecoration(
-            color: colors[snapshot.data],
-            // image: DecorationImage(
-            //   image: AssetImage(
-            //     image[snapshot.data],
-            //   ),
-            // ),
+            
+            image: DecorationImage(
+              image: AssetImage(
+                "assets/images${image[snapshot.data]}",
+              ),
+            ),
           ),
-          child: RaisedButton(
-            elevation: _isClosed(snapshot) ? 5 : 0,
+          child: FlatButton.icon(
+            label: Text(""),
             onLongPress: (){
                 if(!_isClosed(snapshot)){
                   fieldModel.mineSink.add(Pos(row, column));
@@ -46,11 +46,11 @@ class MineWidget extends StatelessWidget {
               _onLongPress();
               },
             onPressed: _onPressed,
-            child: SizedBox(
-              child: Text(image[snapshot.data]),
-              height: 20,
-              width: 20,
-            ),
+            icon: Image(
+              width: 30.0,
+              height: 30.0,
+              image: AssetImage(image[snapshot.data]),
+            )
           ),
         );
       },
