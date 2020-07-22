@@ -29,14 +29,6 @@ class MineWidget extends StatelessWidget {
         if (snapshot.data == MineState.Zero)
           fieldModel.mineSink.add(Pos(row, column));
         return Container(
-          decoration: BoxDecoration(
-            
-            image: DecorationImage(
-              image: AssetImage(
-                "assets/images${image[snapshot.data]}",
-              ),
-            ),
-          ),
           child: FlatButton.icon(
             label: Text(""),
             onLongPress: (){
@@ -49,7 +41,7 @@ class MineWidget extends StatelessWidget {
             icon: Image(
               width: 30.0,
               height: 30.0,
-              image: AssetImage(image[snapshot.data]),
+              image: AssetImage("assets/images/${image[snapshot.data]}.png"),
             )
           ),
         );
