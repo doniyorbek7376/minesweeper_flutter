@@ -39,8 +39,8 @@ class MineWidget extends StatelessWidget {
               },
             onPressed: _onPressed,
             icon: Image(
-              width: 30.0,
-              height: 30.0,
+              width: 50.0,
+              height: 50.0,
               image: AssetImage("assets/images/${image[snapshot.data]}.png"),
             )
           ),

@@ -34,9 +34,9 @@ class _MineFieldWidgetState extends State<MineFieldWidget> {
     if (a == 0) {
       a++;
       widget.field.column =
-          (MediaQuery.of(context).size.width / 30).truncate() - 2;
+          (MediaQuery.of(context).size.width / 30).truncate();
       widget.field.row =
-          (MediaQuery.of(context).size.height / 30).truncate() - 6;
+          (MediaQuery.of(context).size.height / 30).truncate() - 3;
       widget.field.mines = widget.field.column * widget.field.row ~/ 5;
       widget.field.generate();
       model = new MineFieldViewModel(widget.field);
