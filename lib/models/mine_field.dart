@@ -53,7 +53,11 @@ class MineField {
     }
     return sum;
   }
-
+  int flaggedCount(){
+    var c = 0;
+    _listMine.forEach((element) {element.forEach((e) { if(e.isFlagged) c++; });});
+    return c;
+  }
   void _populateListMines() {
     _listMine = List.generate(
       row,

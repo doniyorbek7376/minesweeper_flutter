@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/mine.dart';
 
+
 enum MineState {
   Zero,
   One,
@@ -42,15 +43,15 @@ class MineViewModel {
   }
 
   void onEvent(MineEvent event) {
-    
     switch (event) {
+      
       case MineEvent.Close:
         mine.isOpen = false;
         mine.isFlagged = false;
         _sendState(MineState.Unflagged);    
         break;
       case MineEvent.Open:
-      if(mine.isOpen) return;
+      if(mine.isOpen || mine.isFlagged) return;
         mine.isOpen = true;
         if (mine.mines == -1) {
           _sendState(MineState.Mine);

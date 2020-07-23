@@ -1,5 +1,8 @@
-
+import 'package:flutter/material.dart';
 import 'package:minesweeper/viewmodels/mine_viewmodel.dart';
+Color background = Colors.blue[900];
+// var background = Colors.white;
+// RGB(15,1,143)
 var image = {
   MineState.Zero: "0",
   MineState.One: "1",

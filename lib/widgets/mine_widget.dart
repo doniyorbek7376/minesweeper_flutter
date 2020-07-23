@@ -29,18 +29,17 @@ class MineWidget extends StatelessWidget {
         if (snapshot.data == MineState.Zero)
           fieldModel.mineSink.add(Pos(row, column));
         return Container(
-          child: FlatButton.icon(
-            label: Text(""),
+          child: GestureDetector(
             onLongPress: (){
                 if(!_isClosed(snapshot)){
                   fieldModel.mineSink.add(Pos(row, column));
                 }
               _onLongPress();
               },
-            onPressed: _onPressed,
-            icon: Image(
-              width: 50.0,
-              height: 50.0,
+            onTap: _onPressed,
+            child: Image(
+              width: 30.0,
+              height: 30.0,
               image: AssetImage("assets/images/${image[snapshot.data]}.png"),
             )
           ),
@@ -65,6 +64,7 @@ class MineWidget extends StatelessWidget {
     }
   }
   void _onPressed() {
+    fieldModel.minesCountSink.add(0);
     switch (fieldModel.state) {
       case ClickState.Flag:
         model.sink.add(MineEvent.Flag);
